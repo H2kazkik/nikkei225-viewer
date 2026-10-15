@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中庭の家 — Courtyard House</title>
+<meta name="description" content="一枚の平面図から、壁が立ち上がり、家の中を歩く。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23ece6d7%27/%3E%3Cpath d=%27M5 27V5h22v22H19V13h-6v14z%27 fill=%27none%27 stroke=%27%2315110d%27 stroke-width=%272%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three/three.module.js",
+  "three/examples/jsm/": "./vendor/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+
+  <!-- 製図用紙: 枠・方位・表題欄。壁が立ち上がると薄れる -->
+  <div id="sheet" aria-hidden="false">
+    <div class="paper-grain"></div>
+    <div class="frame"></div>
+    <svg class="north" viewBox="0 0 60 80" aria-label="方位 北が上">
+      <circle cx="30" cy="48" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M30 6 L40 56 L30 48 L20 56 Z" fill="currentColor"/>
+      <text x="30" y="78" text-anchor="middle" font-size="11" fill="currentColor" letter-spacing="1">N</text>
+    </svg>
+    <div class="titleblock">
+      <div class="tb-project">
+        <span class="k">工事名 PROJECT</span>
+        <h1>中庭の家</h1>
+        <span class="en">COURTYARD HOUSE</span>
+      </div>
+      <div class="tb-drawing">
+        <span class="k">図面名 DRAWING</span>
+        <strong>1階平面図</strong>
+        <span class="en">GROUND FLOOR PLAN</span>
+      </div>
+      <div class="tb-grid">
+        <div><span class="k">縮尺</span><b>S=1:100</b></div>
+        <div><span class="k">切断高さ</span><b>FL+1,200</b></div>
+        <div><span class="k">敷地</span><b>34,000 × 30,000</b></div>
+        <div><span class="k">延床</span><b>約 550 m²</b></div>
+      </div>
+      <p class="note">壁は床から 1.2 m の高さで水平に切ってある。<br>この図は絵ではなく、家の立体モデルそのものを真上から見たもの。</p>
+    </div>
+    <div class="hint"><span>SCROLL</span><i></i></div>
+  </div>
+
+  <div id="labels"></div>
+  <div id="caption"><span class="no"></span><span class="tx"></span></div>
+  <div id="chapter-end">CHECKPOINT 1 — ここまで</div>
+
+  <!-- スクロール量を作るだけの空の要素 -->
+  <main id="scroll"></main>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
